@@ -5,6 +5,7 @@ import zoo.entities.foods.Food;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import static zoo.common.ExceptionMessages.AREA_NAME_NULL_OR_EMPTY;
 import static zoo.common.ExceptionMessages.NOT_ENOUGH_CAPACITY;
@@ -28,13 +29,12 @@ public abstract class BaseArea implements Area {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new NullPointerException(AREA_NAME_NULL_OR_EMPTY);
         }
         this.name = name;
     }
-
 
     @Override
     public Collection<Food> getFoods() {
@@ -53,7 +53,7 @@ public abstract class BaseArea implements Area {
 
     @Override
     public void addAnimal(Animal animal) {
-        if (animals.size() >= capacity) {
+        if (animals.size() == capacity) {
             throw new IllegalStateException(NOT_ENOUGH_CAPACITY);
         }
         animals.add(animal);
@@ -84,5 +84,14 @@ public abstract class BaseArea implements Area {
                 .append(String.format("Foods: %d", foods.size())).append(System.lineSeparator())
                 .append(String.format("Calories: %d", sumCalories()));
         return sb.toString();
+//
+//        String animalOutput = animals.isEmpty()
+//                ? "none"
+//                : animals.stream().map(Animal::getName).collect(Collectors.joining(" "));
+//
+//        return String.format("%s (%s):%n" +
+//                "Animals: %s%n" +
+//                "Foods: %d%n" +
+//                "Calories: %d", name, this.getClass().getSimpleName(), animalOutput, foods.size(), sumCalories());
     }
 }
