@@ -111,7 +111,6 @@ public class ControllerImpl implements Controller {
         area.feed();
 
         return String.format(ANIMALS_FED, area.getAnimals().size());
-
     }
 
     @Override
