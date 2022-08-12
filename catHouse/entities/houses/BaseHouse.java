@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import static catHouse.common.ConstantMessages.NOT_ENOUGH_CAPACITY_FOR_CAT;
+import static catHouse.common.ExceptionMessages.HOUSE_NAME_CANNOT_BE_NULL_OR_EMPTY;
 
 public class BaseHouse implements House{
 
@@ -17,7 +18,7 @@ public class BaseHouse implements House{
     private Collection<Cat> cats;
 
     public BaseHouse(String name, int capacity) {
-        this.name = name;
+        setName(name);
         this.capacity = capacity;
         toys = new ArrayList<>();
         cats = new ArrayList<>();
@@ -56,7 +57,7 @@ public class BaseHouse implements House{
        return String.format("%s %s:", name, getClass().getSimpleName()) + System.lineSeparator()
                + "Cats: " + ((cats.size() == 0) ? "none" : cats.stream().map(Cat::getName).collect(Collectors.joining(" ")))
                + System.lineSeparator()
-               + "Toys: " + toys.size()
+               + "Toys: " + toys.size() + " "
                + "Softness: " + sumSoftness();
 
     }
@@ -68,16 +69,19 @@ public class BaseHouse implements House{
 
     @Override
     public void setName(String name) {
-
+        if (name == null || name.trim().isEmpty()) {
+            throw new NullPointerException(HOUSE_NAME_CANNOT_BE_NULL_OR_EMPTY);
+        }
+        this.name = name;
     }
 
     @Override
     public Collection<Cat> getCats() {
-        return null;
+        return cats;
     }
 
     @Override
     public Collection<Toy> getToys() {
-        return null;
+        return toys;
     }
 }

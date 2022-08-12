@@ -47,4 +47,27 @@ public abstract class BaseCat implements Cat{
             kilograms = LONG_HAIR_CAT_INITIAL_WEIGHT + 3;
         }
     }
+
+    public void setKilograms(int kilograms) {
+        this.kilograms = kilograms;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    @Override
+    public int getKilograms() {
+        return kilograms;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
 }

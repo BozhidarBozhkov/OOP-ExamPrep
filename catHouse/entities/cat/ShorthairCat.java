@@ -9,18 +9,5 @@ public class ShorthairCat extends BaseCat{
     }
 
 
-    @Override
-    public String getName() {
-        return null;
-    }
 
-    @Override
-    public int getKilograms() {
-        return 0;
-    }
-
-    @Override
-    public double getPrice() {
-        return 0;
-    }
 }
