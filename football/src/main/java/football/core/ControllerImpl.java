@@ -45,7 +45,7 @@ public class ControllerImpl implements Controller {
                 throw new NullPointerException(INVALID_FIELD_TYPE);
         }
         fields.add(field);
-        return String.format(SUCCESSFULLY_ADDED_FIELD_TYPE, fieldName);
+        return String.format(SUCCESSFULLY_ADDED_FIELD_TYPE, fieldType);
     }
 
     @Override
