@@ -39,6 +39,25 @@ public class FootballTeamTests {
         Assert.assertEquals(expectedVacantPos, team.getVacantPositions());
     }
 
+    @Test
+    public void test_SellFootballer(){
+        FootballTeam team = new FootballTeam("CSKA", 2);
+        team.addFootballer(player1);
+        team.addFootballer(player2);
+        Footballer footballerForSale = team.footballerForSale("Gosho");
+        Assert.assertEquals("Gosho", footballerForSale.getName());
+        footballerForSale.isActive();
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void test_SellNonExistingFootballer_ShouldThrow(){
+        FootballTeam team = new FootballTeam("CSKA", 2);
+        team.addFootballer(player1);
+        team.addFootballer(player2);
+        Footballer footballerForSale = team.footballerForSale("Messi");
+
+    }
+
     @Test(expected = NullPointerException.class)
     public void test_NullNameShouldThrow() {
         FootballTeam team = new FootballTeam(null, 2);
@@ -97,6 +116,15 @@ public class FootballTeamTests {
         team.addFootballer(player1);
         team.addFootballer(player2);
         team.footballerForSale("Ivan");
+    }
+
+    @Test
+    public void test_GetStatistics() {
+        FootballTeam team = new FootballTeam("CSKA", 2);
+        team.addFootballer(player1);
+        String expected = String.format("The footballer %s is in the team %s.", player1.getName(), team.getName());
+        String actual = team.getStatistics();
+        Assert.assertEquals(expected, actual);
     }
 
 }
