@@ -13,7 +13,6 @@ public abstract class BasePlayer implements Player {
         setName(name);
         setNationality(nationality);
         setStrength(strength);
-        this.kg = kg;
     }
 
     public void setName(String name) {
@@ -42,11 +41,11 @@ public abstract class BasePlayer implements Player {
     }
 
     public void stimulation() {
-        if ("Women".equals(getClass().getSimpleName())) {
-            strength += 115;
-        } else if ("Men".equals(getClass().getSimpleName())) {
-            strength += 145;
-        }
+//        if ("Women".equals(getClass().getSimpleName())) {
+//            strength += 115;
+//        } else if ("Men".equals(getClass().getSimpleName())) {
+//            strength += 145;
+//        }
     }
 
     @Override

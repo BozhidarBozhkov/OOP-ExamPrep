@@ -10,4 +10,8 @@ public class Women extends BasePlayer{
         setKg(WOMEN_INITIAL_WEIGHT);
     }
 
+    @Override
+    public void stimulation() {
+        setStrength(getStrength() + 115);
+    }
 }

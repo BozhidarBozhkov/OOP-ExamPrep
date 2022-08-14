@@ -73,7 +73,7 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(String.format(NO_SUPPLEMENT_FOUND, supplementType));
         }
 
-        Field field = fields.stream().filter(f->f.getName().equals(fieldName)).findFirst().orElse(null);
+        Field field = fields.stream().filter(f -> f.getName().equals(fieldName)).findFirst().orElse(null);
         field.addSupplement(desiredSupplement);
         supplementRepository.remove(desiredSupplement);
 
@@ -95,11 +95,13 @@ public class ControllerImpl implements Controller {
                 throw new IllegalArgumentException(INVALID_PLAYER_TYPE);
         }
 
-        Field field = fields.stream().filter(f->f.getName().equals(fieldName)).findFirst().orElse(null);
+        Field field = fields.stream().filter(f -> f.getName().equals(fieldName)).findFirst().orElse(null);
         if ("ArtificialTurf".equals(field.getClass().getSimpleName()) && playerType.equals("Men")
-            || ("NaturalGrass".equals(field.getClass().getSimpleName()) && playerType.equals("Women"))) {
+                || ("NaturalGrass".equals(field.getClass().getSimpleName()) && playerType.equals("Women"))) {
             return FIELD_NOT_SUITABLE;
         }
+
+
 
         field.addPlayer(player);
         return String.format(SUCCESSFULLY_ADDED_PLAYER_IN_FIELD, playerType, fieldName);
@@ -107,7 +109,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String dragPlayer(String fieldName) {
-        Field field = fields.stream().filter(f->f.getName().equals(fieldName)).findFirst().orElse(null);
+        Field field = fields.stream().filter(f -> f.getName().equals(fieldName)).findFirst().orElse(null);
 
         field.drag();
         int dragCount = field.getPlayers().size();
@@ -117,13 +119,14 @@ public class ControllerImpl implements Controller {
     @Override
     public String calculateStrength(String fieldName) {
 
-        Field field = fields.stream().filter(f->f.getName().equals(fieldName)).findFirst().orElse(null);
 
-      int sumOfAllPlayersStrenght = field.getPlayers().stream().mapToInt(Player::getStrength).sum();
-       // int sum = field.getPlayers().stream().mapToInt(Player::getStrength).sum();
+        Field field = fields.stream().filter(f -> f.getName().equals(fieldName)).findFirst().orElse(null);
+
+        int sumOfAllPlayersStrength = field.getPlayers().stream().mapToInt(Player::getStrength).sum();
+        // int sum = field.getPlayers().stream().mapToInt(Player::getStrength).sum();
 
 
-        return String.format(STRENGTH_FIELD, fieldName, sumOfAllPlayersStrenght);
+        return String.format(STRENGTH_FIELD, fieldName, sumOfAllPlayersStrength);
     }
 
     @Override

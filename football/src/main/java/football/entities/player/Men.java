@@ -8,4 +8,9 @@ public class Men extends BasePlayer{
         super(name, nationality, strength);
         setKg(MEN_INITIAL_WEIGHT);
     }
+
+    @Override
+    public void stimulation() {
+        setStrength(getStrength() + 145);
+    }
 }
