@@ -80,4 +80,8 @@ public abstract class BaseAquarium implements Aquarium{
     public Collection<Decoration> getDecorations() {
         return decorations;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }

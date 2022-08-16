@@ -1,7 +1,6 @@
 package aquarium.core;
 
 
-
 import aquarium.common.Command;
 
 import java.io.BufferedReader;
@@ -14,7 +13,7 @@ public class EngineImpl implements Engine {
     private BufferedReader reader;
 
     public EngineImpl() {
-       // this.controller = new ControllerImpl(); //TODO implement first
+        this.controller = new ControllerImpl();
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -35,6 +34,7 @@ public class EngineImpl implements Engine {
             System.out.println(result);
         }
     }
+
     private String processInput() throws IOException {
         String input = this.reader.readLine();
         String[] tokens = input.split("\\s+");
@@ -71,39 +71,35 @@ public class EngineImpl implements Engine {
         }
         return result;
     }
+
     private String addAquarium(String[] data) {
-      //TODO
-        return null;
+
+        return controller.addAquarium(data[0], data[1]);
     }
 
     private String addDecoration(String[] data) {
-        //TODO
-        return null;
+        return controller.addDecoration(data[0]);
     }
 
     private String insertDecoration(String[] data) {
-        //TODO
-        return null;
+        return controller.insertDecoration(data[0], data[1]);
     }
 
     private String addFish(String[] data) {
         //{aquariumName} {fishType} {fishName} {fishSpecies} {price}
-        //TODO
-        return null;
+        return controller.addFish(data[0], data[1], data[2], data[3], Double.parseDouble(data[4]));
     }
 
     private String feedFish(String[] data) {
-        //TODO
-        return null;
+        return controller.feedFish(data[0]);
     }
 
     private String calculateValue(String[] data) {
-        //TODO
-        return null;
+        return controller.calculateValue(data[0]);
     }
 
     private String report() {
-        return null;
+        return controller.report();
     }
 }
 
