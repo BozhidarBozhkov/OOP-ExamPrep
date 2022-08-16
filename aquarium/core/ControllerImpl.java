@@ -92,15 +92,21 @@ public class ControllerImpl implements Controller {
                 throw new IllegalArgumentException(INVALID_FISH_TYPE);
         }
 
-        Aquarium aquarium = aquariums.stream().filter(a -> a.getName().equals(aquariumName)).findFirst().orElse(null);
+
         //TODO Check if this returns correct output
-        if (!aquarium.getClass().getSimpleName().substring(0, 5).equals(fishType.substring(0, 5))) {
-            return WATER_NOT_SUITABLE;
+
+        try {
+            Aquarium aquarium = aquariums.stream().filter(a -> a.getName().equals(aquariumName)).findFirst().orElse(null);
+            aquarium.addFish(fish);
+        } catch (IllegalStateException exception) {
+            exception.getMessage();
         }
+//        if (!aquarium.getClass().getSimpleName().substring(0, 5).equals(fishType.substring(0, 5))) {
+//            return WATER_NOT_SUITABLE;
+//        }
 //        if (aquarium.getFish().size() > aquariums.size()) {
 //            return NOT_ENOUGH_CAPACITY;
 //        } else{}
-        aquarium.addFish(fish);
 
         return String.format(SUCCESSFULLY_ADDED_FISH_IN_AQUARIUM, fishType, aquariumName);
     }
@@ -116,7 +122,6 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String calculateValue(String aquariumName) {
-        //TODO check why calculation is incorrect
         Aquarium aquarium = aquariums.stream().filter(a -> a.getName().equals(aquariumName)).findFirst().orElse(null);
         double sumOfFish = aquarium.getFish().stream().mapToDouble(Fish::getPrice).sum();
         double sumOfDecorations = aquarium.getDecorations().stream().mapToDouble(Decoration::getPrice).sum();

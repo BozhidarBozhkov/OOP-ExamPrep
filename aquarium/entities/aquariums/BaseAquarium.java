@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import static aquarium.common.ConstantMessages.NOT_ENOUGH_CAPACITY;
+import static aquarium.common.ConstantMessages.WATER_NOT_SUITABLE;
 import static aquarium.common.ExceptionMessages.AQUARIUM_NAME_NULL_OR_EMPTY;
 
 public abstract class BaseAquarium implements Aquarium{
@@ -46,6 +47,11 @@ public abstract class BaseAquarium implements Aquarium{
         if (this.fish.size() == capacity) {
             throw new IllegalStateException(NOT_ENOUGH_CAPACITY);
         }
+        String waterTypeFish = fish.getClass().getSimpleName().replaceAll("Fish", "");
+        if (!this.getClass().getSimpleName().contains(waterTypeFish)) {
+            throw new IllegalStateException(WATER_NOT_SUITABLE);
+        }
+        this.fish.add(fish);
     }
 
     @Override
