@@ -1,4 +1,4 @@
-package viceCity.core.interfaces;
+package viceCity.core;
 
 public class ControllerImpl {
 

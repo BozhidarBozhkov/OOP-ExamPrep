@@ -1,6 +1,7 @@
 package viceCity.models.players;
 
 import viceCity.models.guns.Gun;
+import viceCity.repositories.interfaces.GunRepository;
 import viceCity.repositories.interfaces.Repository;
 
 import static viceCity.common.ExceptionMessages.NAME_NULL;
@@ -12,21 +13,20 @@ public abstract class BasePlayer implements Player{
     private int lifePoints;
     private Repository<Gun> gunRepository;
 
-    public BasePlayer(String name, int lifePoints) {
+    protected BasePlayer(String name, int lifePoints) {
         setName(name);
         setLifePoints(lifePoints);
-        //todo initialize repository
-        this.gunRepository = gunRepository;
+        this.gunRepository = new GunRepository();
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new NullPointerException(NAME_NULL);
         }
         this.name = name;
     }
 
-    public void setLifePoints(int lifePoints) {
+    private void setLifePoints(int lifePoints) {
         if (lifePoints < 0) {
             throw new IllegalArgumentException(PLAYER_LIFE_POINTS_LESS_THAN_ZERO);
         }
@@ -35,12 +35,12 @@ public abstract class BasePlayer implements Player{
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
     public int getLifePoints() {
-        return lifePoints;
+        return this.lifePoints;
     }
 
     public boolean isAlive() {

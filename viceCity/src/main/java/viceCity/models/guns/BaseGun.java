@@ -9,14 +9,14 @@ public abstract class BaseGun implements Gun {
     private int totalBullets;
     private boolean canFire;
 
-    public BaseGun(String name, int bulletsPerBarrel, int totalBullets) {
+    protected BaseGun(String name, int bulletsPerBarrel, int totalBullets) {
         setName(name);
         setBulletsPerBarrel(bulletsPerBarrel);
         setTotalBullets(totalBullets);
         canFire = true;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new NullPointerException(NAME_NULL);
         }
