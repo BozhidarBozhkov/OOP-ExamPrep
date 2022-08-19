@@ -7,7 +7,6 @@ import viceCity.repositories.interfaces.Repository;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
-import java.util.List;
 
 public class GangNeighbourhood implements Neighbourhood {
 

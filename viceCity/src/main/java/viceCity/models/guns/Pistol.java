@@ -4,12 +4,10 @@ public class Pistol extends BaseGun {
 
     private static final int BULLETS_PER_BARREL = 10;
     private static final int TOTAL_BULLETS = 100;
-  //  private int bullets;
 
 
     public Pistol(String name) {
         super(name, BULLETS_PER_BARREL, TOTAL_BULLETS);
-      //  this.bullets = 10;
     }
 
     @Override
@@ -29,8 +27,4 @@ public class Pistol extends BaseGun {
         setBulletsPerBarrel(BULLETS_PER_BARREL);
     }
 
-//    private void reload() {
-//        setTotalBullets(getTotalBullets() - 10);
-//       // bullets--;
-//    }
 }
