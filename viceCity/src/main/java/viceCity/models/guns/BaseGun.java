@@ -23,14 +23,18 @@ public abstract class BaseGun implements Gun {
         this.name = name;
     }
 
-    public void setBulletsPerBarrel(int bulletsPerBarrel) {
+    protected void setCanFire(boolean canFire){
+        this.canFire = canFire;
+    }
+
+    protected void setBulletsPerBarrel(int bulletsPerBarrel) {
         if (bulletsPerBarrel < 0) {
             throw new IllegalArgumentException(BULLETS_LESS_THAN_ZERO);
         }
         this.bulletsPerBarrel = bulletsPerBarrel;
     }
 
-    public void setTotalBullets(int totalBullets) {
+    protected void setTotalBullets(int totalBullets) {
         if (totalBullets < 0) {
             throw new IllegalArgumentException(TOTAL_BULLETS_LESS_THAN_ZERO);
         }
@@ -48,7 +52,7 @@ public abstract class BaseGun implements Gun {
     }
 
     public boolean canFire(){
-        return bulletsPerBarrel > 0 || totalBullets > 0;
+        return this.totalBullets > 0 || this.bulletsPerBarrel > 0;
     }
 
     @Override

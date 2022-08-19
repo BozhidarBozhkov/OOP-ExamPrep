@@ -2,36 +2,37 @@ package viceCity.repositories.interfaces;
 
 import viceCity.models.guns.Gun;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
-public class GunRepository implements Repository<Gun>{
+public class GunRepository implements Repository<Gun> {
 
-    private Collection<Gun> models;
+    private Map<String, Gun> models;
 
     public GunRepository() {
-        this.models = new ArrayList<>();
+        this.models = new LinkedHashMap<>();
     }
 
     @Override
     public Collection getModels() {
-        return Collections.unmodifiableCollection(models);
+        return Collections.unmodifiableCollection(models.values());
     }
 
     @Override
     public void add(Gun model) {
+        models.putIfAbsent(model.getName(), model);
 
     }
 
     @Override
     public boolean remove(Gun model) {
-        return false;
+        Gun removed = models.remove(model.getName());
+        return removed != null;
     }
 
 
     @Override
     public Gun find(String name) {
-        return null;
+        // It is guaranteed that the guns exist in the collection
+        return models.get(name);
     }
 }
